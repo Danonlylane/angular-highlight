@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+
+  <div class="demo-section">
+    <h2>编辑区域</h2>
+    <p class="description">在下面的文本框中输入内容，使用 <code>{{"{{变量}}"}}</code> 格式会被自动高亮显示</p>
+
+    <app-highlight-textarea
+      [value]="textValue"
+      (valueChange)="onTextChange($event)"
+      [placeholder]="'输入文本，使用 {{变量}} 格式会被高亮显示...'"
+      [rows]="10"
+    ></app-highlight-textarea>
+  </div>
+
+  <div class="output-section">
+    <h2>原始文本输出</h2>
+    <pre class="output-box">{{ textValue }}</pre>
+  </div>
+
+  <div class="info-section">
+    <h3>使用说明</h3>
+    <ul>
+      <li>在文本中使用 <code>{{"{{变量名}}"}}</code> 格式</li>
+      <li>所有被 <code>{{"{{}}"}}</code> 包裹的内容会被黄色高亮</li>
+      <li>支持多行文本和滚动</li>
+      <li>光标位置和选择功能正常工作</li>
+    </ul>
+  </div>
+</div>

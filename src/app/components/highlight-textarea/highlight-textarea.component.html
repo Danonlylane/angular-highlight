@@ -1,0 +1,20 @@
+<div class="highlight-textarea-wrapper">
+  <!-- 高亮显示层 -->
+  <div
+    #highlight
+    class="highlight-layer"
+    [innerHTML]="getHighlightedHtml()">
+  </div>
+
+  <!-- 实际的 textarea -->
+  <textarea
+    #textarea
+    [value]="value"
+    (input)="onInput($event)"
+    (scroll)="onScroll()"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [rows]="rows"
+    class="input-layer"
+  ></textarea>
+</div>
