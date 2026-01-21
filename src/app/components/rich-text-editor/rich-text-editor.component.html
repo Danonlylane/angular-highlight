@@ -1,0 +1,13 @@
+<div class="rich-text-editor-wrapper">
+  <div
+    #editor
+    class="rich-text-editor"
+    contenteditable="true"
+    [attr.data-placeholder]="placeholder"
+    [style.min-height]="minHeight"
+    (input)="onInput($event)"
+    (paste)="onPaste($event)"
+    (compositionstart)="onCompositionStart()"
+    (compositionend)="onCompositionEnd($event)"
+  ></div>
+</div>

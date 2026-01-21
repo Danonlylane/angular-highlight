@@ -1,9 +1,38 @@
 <div class="container">
   <h1>{{ title }}</h1>
 
+  <!-- 富文本编辑器区域 (ContentEditable) -->
   <div class="demo-section">
-    <h2>编辑区域</h2>
-    <p class="description">在下面的文本框中输入内容，使用 <code>{{"{{变量}}"}}</code> 格式会被自动高亮显示</p>
+    <h2>🎨 富文本编辑器 (ContentEditable)</h2>
+    <p class="description">基于 contenteditable 实现的富文本编辑器，光标对齐完美！</p>
+
+    <app-rich-text-editor
+      [value]="richTextValue"
+      (valueChange)="onRichTextChange($event)"
+      [placeholder]="'输入文本，使用 {{变量}} 格式会被高亮显示...'"
+      [minHeight]="'200px'"
+    ></app-rich-text-editor>
+
+    <!-- 操作按钮 -->
+    <div class="button-group">
+      <button class="btn btn-primary" (click)="selectAllText()">全选</button>
+      <button class="btn btn-secondary" (click)="getSelectedText()">获取选中文本</button>
+      <button class="btn btn-secondary" (click)="insertSampleText()">插入变量</button>
+      <button class="btn btn-danger" (click)="clearEditor()">清空</button>
+    </div>
+  </div>
+
+  <div class="output-section">
+    <h2>富文本输出</h2>
+    <pre class="output-box">{{ richTextValue }}</pre>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 原双层 Textarea 区域 -->
+  <div class="demo-section">
+    <h2>📝 双层 Textarea (原方案)</h2>
+    <p class="description">使用双层叠加实现的高亮 textarea</p>
 
     <app-highlight-textarea
       [value]="textValue"
@@ -14,17 +43,60 @@
   </div>
 
   <div class="output-section">
-    <h2>原始文本输出</h2>
+    <h2>Textarea 输出</h2>
     <pre class="output-box">{{ textValue }}</pre>
   </div>
 
   <div class="info-section">
-    <h3>使用说明</h3>
+    <h3>✨ 功能对比</h3>
+    <div class="comparison-table">
+      <table>
+        <thead>
+          <tr>
+            <th>特性</th>
+            <th>富文本编辑器</th>
+            <th>双层 Textarea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>光标对齐</td>
+            <td class="check">✅ 完美</td>
+            <td class="warning">⚠️ 可能有偏差</td>
+          </tr>
+          <tr>
+            <td>文本选择</td>
+            <td class="check">✅ 原生支持</td>
+            <td class="check">✅ 支持</td>
+          </tr>
+          <tr>
+            <td>API 丰富度</td>
+            <td class="check">✅ 丰富</td>
+            <td class="warning">⚠️ 有限</td>
+          </tr>
+          <tr>
+            <td>复杂度</td>
+            <td class="warning">⚠️ 中等</td>
+            <td class="check">✅ 简单</td>
+          </tr>
+          <tr>
+            <td>性能</td>
+            <td class="check">✅ 优秀</td>
+            <td class="check">✅ 优秀</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="info-section">
+    <h3>📖 使用说明</h3>
     <ul>
       <li>在文本中使用 <code>{{"{{变量名}}"}}</code> 格式</li>
       <li>所有被 <code>{{"{{}}"}}</code> 包裹的内容会被黄色高亮</li>
       <li>支持多行文本和滚动</li>
-      <li>光标位置和选择功能正常工作</li>
+      <li>富文本编辑器支持全选、获取选中文本、插入文本等操作</li>
+      <li>支持中文输入法 (IME)</li>
     </ul>
   </div>
 </div>
